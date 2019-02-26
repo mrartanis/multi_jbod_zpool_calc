@@ -36,8 +36,8 @@ echo "JBOD count:"
 read JBODS
 echo "DRIVES in mirror:"
 read MIRROR
-echo "SPARSE disks: (not in array)"
-read SPARSE
+echo "SPARE disks: (not in array)"
+read SPARE
 echo "ONE JBOD DISK COUNT:"
 read JBOD_D_C
 echo "ONE DRIVE TB:"
@@ -48,14 +48,14 @@ COLOR_ARRAY[0]=1
 echo ""
 CUR=0
 
-ACTIVE=$((TOTAL - SPARSE))
+ACTIVE=$((TOTAL - SPARE))
 
 while [ ! $(( (ACTIVE) % MIRROR)) -eq 0 ]; do
      ACTIVE=$((ACTIVE - 1))
 done
 
 STEP=$((ACTIVE/MIRROR))
-echo "acct with $ACTIVE disks and step $STEP. Total size of array: $(( ACTIVE * DS / MIRROR ))TB, sparse drives: $(( TOTAL - ACTIVE ))"
+echo "acct with $ACTIVE disks and step $STEP. Total size of array: $(( ACTIVE * DS / MIRROR ))TB, spare drives: $(( TOTAL - ACTIVE ))"
 echo "Optimal mirrors for $MIRROR layout:"
 
 for i in $( seq 1 $STEP ); do
